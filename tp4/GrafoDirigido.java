@@ -6,6 +6,8 @@ import java.util.Iterator;
 
 public class GrafoDirigido<T> implements Grafo<T> {
 	private HashMap<Integer, ArrayList<Arco<T>>> vertices;
+	private HashMap<String, ArrayList<Arco<T>>> verticesStr;
+	
 
 	public GrafoDirigido() {
 		this.vertices = new HashMap<>();
@@ -123,6 +125,11 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		Iterator<Integer> it = this.vertices.keySet().iterator();
 		return it;
 	}
+	@Override
+	public Iterator<String> obtenerVerticesStrs() {
+		Iterator<String> it = this.verticesStr.keySet().iterator();
+		return it;
+	}
 
 	@Override
 	public Iterator<Integer> obtenerAdyacentes(int verticeId) {
@@ -138,7 +145,20 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 		return lista.iterator();
 	}
+	@Override
+	public Iterator<String> obtenerAdyacentesStr(String verticeId) {
+		ArrayList<String> lista = new ArrayList<>();
+		if (this.verticesStr.containsKey(verticeId)) {
+			Iterator<Arco<T>> it = this.verticesStr.get(verticeId).iterator();
+			while (it.hasNext()) {
+				Arco<T> aux = it.next();
+				lista.add(aux.getVerticeDestinoStr());
 
+			}
+		}
+
+		return lista.iterator();
+	}
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
 		ArrayList<Arco<T>> arcos = new ArrayList<>();
