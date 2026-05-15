@@ -6,20 +6,13 @@
 
 Cada nodo:
 <ul>
-
-    <li>
-        representa un estado
-    </li>
+    +representa un estado 
 </ul>
 
 
 Cada flecha:
 
 <ul>
-
-    <li>
-        representa una decisión.
-
-    </li>
+    +representa una decisión.
 </ul>    
 </p>
