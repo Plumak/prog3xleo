@@ -1,7 +1,7 @@
-###Conceptos sobre Backtracking
+### Conceptos sobre Backtracking
 
 
-##Cómo pensar un árbol de exploración
+## Cómo pensar un árbol de exploración
 <p>
 
 Cada nodo:
