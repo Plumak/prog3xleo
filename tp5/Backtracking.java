@@ -8,15 +8,15 @@ public class Backtracking<T> {
 
     private ArrayList<T> solucionActual;
     private ArrayList<T> mejorSolucion;
+    private GrafoDirigido<T> grafo;
 
     public Backtracking() {
         solucionActual = new ArrayList<>();
         mejorSolucion = new ArrayList<>();
+        grafo = new GrafoDirigido<>();
     }
 
-    public void resolver() {
-
-        GrafoDirigido<T> grafo = new GrafoDirigido<>();
+    public void resolver(GrafoDirigido<T> grafo) {
 
         backtrack(grafo);
     }
@@ -30,12 +30,12 @@ public class Backtracking<T> {
          */
 
         /*
-            * if (esSolucion(estado)) {
-            * 
-            * } else {
-            * 
-            * // generar hijoss
-            * }
+         * if (esSolucion(estado)) {
+         * 
+         * } else {
+         * 
+         * // generar hijoss
+         * }
          */
     }
 }
