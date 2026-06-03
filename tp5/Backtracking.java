@@ -1,41 +1,71 @@
 package tp5;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import tp4.GrafoDirigido;
 
 public class Backtracking<T> {
 
-    private ArrayList<T> solucionActual;
-    private ArrayList<T> mejorSolucion;
+    private ArrayList<Integer> solucionActual;
+    private ArrayList<Integer> mejorSolucion;
+
     private GrafoDirigido<T> grafo;
+
+    private Integer entrada;
+    private Integer salida;
 
     public Backtracking() {
         solucionActual = new ArrayList<>();
         mejorSolucion = new ArrayList<>();
-        grafo = new GrafoDirigido<>();
     }
 
-    public void resolver(GrafoDirigido<T> grafo) {
+    public ArrayList<Integer> resolver(
+            GrafoDirigido<T> grafo,
+            Integer entrada,
+            Integer salida) {
 
-        backtrack(grafo);
+        this.grafo = grafo;
+        this.entrada = entrada;
+        this.salida = salida;
+
+        solucionActual.clear();
+        mejorSolucion.clear();
+
+        solucionActual.add(entrada);
+
+        backtrack(this.entrada);
+
+        return mejorSolucion;
     }
 
-    private void backtrack(GrafoDirigido<T> estado) {
-        /*
-         * si llegué a la salida:
-         * si este camino es mejor:
-         * actualizar mejor solución
-         * seguir buscando
-         */
+    private void backtrack(Integer actual) {
 
-        /*
-         * if (esSolucion(estado)) {
-         * 
-         * } else {
-         * 
-         * // generar hijoss
-         * }
-         */
+        if (actual.equals(salida)) {
+
+            if (solucionActual.size() > mejorSolucion.size()) {
+
+                mejorSolucion.clear();
+                mejorSolucion.addAll(solucionActual);
+            }
+
+        } else {
+
+            Iterator<Integer> hijos = grafo.obtenerAdyacentes(actual);
+
+            while (hijos.hasNext()) {
+
+                Integer siguiente = hijos.next();
+
+                if (!solucionActual.contains(siguiente)) {
+
+                    solucionActual.add(siguiente);
+
+                    backtrack(siguiente);
+
+                    solucionActual.remove(solucionActual.size() - 1);
+                }
+            }
+        }
     }
 }
